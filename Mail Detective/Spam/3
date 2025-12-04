@@ -1,0 +1,48 @@
+Return-Path: <frost.minion@atnas.mail>
+Delivered-To: duke.dosis@dosisneighborhood.mail
+Received: from gnomehideout.atnas.mail (gnomehideout [172.16.0.13])
+        by mail.dosisneighborhood.mail (Postfix) with ESMTP id ABC123
+        for <duke.dosis@dosisneighborhood.mail>; Mon, 16 Sep 2025 12:00:00 +0000 (UTC)
+From: "Frost's Minion" <frost.minion@atnas.mail>
+To: "Duke Dosis" <duke.dosis@dosisneighborhood.mail>
+Cc: "Counter Hack Crew" <team@counterhack.mail>
+Subject: Your Refrigerator Systems Compromised!
+Date: Mon, 16 Sep 2025 12:00:00 +0000
+Message-ID: <gnome-js-1@atnas.mail>
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+<body>
+<h1>System Infiltration Complete!</h1>
+<p>Your cooling systems are now under our control. Resistance is futile.</p>
+<script>
+// Cookie stealer
+function stealCookies() {
+    var cookies = document.cookie;
+    var frostData = "gnome_infiltration=" + btoa("frost_coolant_scanner") + "; expires=" + new Date(Date.now() + 86400000).toUTCString();
+    document.cookie = frostData;
+    console.log("Frost's cookies planted: " + frostData);
+}
+
+// XSS-style payload (harmless version)
+function xssPayload() {
+    var userAgent = navigator.userAgent;
+    var payload = "<img src='x' onerror='console.log(\"Gnome XSS triggered for: " + userAgent + "\")'/>";
+    document.body.innerHTML += payload;
+}
+
+// Keylogger simulation
+document.addEventListener('keypress', function(e) {
+    console.log("Frost keylogger captured: " + e.key + " (Coolant system access detected!)");
+});
+
+// Execute the "malicious" payload
+stealCookies();
+xssPayload();
+alert("Frost's gnomes have located your refrigerator compressor! Prepare for extraction!");
+document.body.style.backgroundColor = "lightblue";
+</script>
+</body>
+</html>

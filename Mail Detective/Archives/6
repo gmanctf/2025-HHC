@@ -1,0 +1,58 @@
+Return-Path: <sneaky.gnome@evilgnomes.org>
+Delivered-To: manager@whos-ville.local
+Received: from evilgnomes.org (unknown [192.168.1.42])
+        by mail.whos-ville.local (Postfix) with ESMTP id 1A2B3C4D5E
+        for <manager@whos-ville.local>; Wed, 15 Dec 2023 03:42:17 +0000 (UTC)
+From: "Neighborhood Security" <security@wh0s-ville.local>
+Reply-To: "Gnimble Gnasher" <sneaky.gnome@evilgnomes.org>
+To: "All Neighborhood Residents" <residents@whos-ville.local>
+Subject: URGENT: Password Reset Required Immediately
+Date: Wed, 15 Dec 2023 03:42:01 +0000
+Message-ID: <gnome-phish-9a8b7c6d5@evilgnomes.org>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="gnome-boundary-789"
+X-Gnome-Signature: GN0M3H4CK-7h3-H4LL5
+X-Evil-Plan: PHASE2-ACTIVATE
+
+--gnome-boundary-789
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+SECURITY ALERT - ACTION REQUIRED
+
+Dear Neighborhood Resident,
+
+Our security system has detected an unauthorized access attempt on your account.
+To protect your information, you must reset your password IMMEDIATELY.
+
+Click here to reset: http://p4ssw0rd-r3s3t.gnomesecurity.evil/whos-ville
+
+Failure to reset within 2 hours will result in account lockout.
+
+Thank you,
+Neighborhood Security Team
+
+--gnome-boundary-789
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+<head>
+  <title>Security Alert</title>
+</head>
+<body style="font-family: Arial, sans-serif; color: #333;">
+  <div style="border: 2px solid red; padding: 20px; max-width: 600px;">
+    <h2 style="color: red;">⚠️ SECURITY ALERT - ACTION REQUIRED ⚠️</h2>
+    <p>Dear Neighborhood Resident,</p>
+    <p>Our security system has detected an <strong>unauthorized access attempt</strong> on your account.</p>
+    <p>To protect your information, you must <strong>reset your password IMMEDIATELY</strong>.</p>
+    <p><a href="http://p4ssw0rd-r3s3t.gnomesecurity.evil/whos-ville" style="background-color: #4CAF50; color: white; padding: 10px 15px; text-decoration: none; display: inline-block; border-radius: 5px;">RESET PASSWORD NOW</a></p>
+    <p>Failure to reset within 2 hours will result in account lockout.</p>
+    <p>Thank you,<br>Neighborhood Security Team</p>
+  </div>
+  <img src="http://tracking.gnomesecurity.evil/pixel.gif" width="1" height="1" style="display:none">
+  <!-- gnomes-plan-notes: Phase 2 complete. Moving on to cookie theft and neighborhood server compromise. Report to GnomeKing when phishing hits 50% success rate. -->
+</body>
+</html>
+
+--gnome-boundary-789--

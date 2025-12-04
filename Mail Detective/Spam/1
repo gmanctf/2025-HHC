@@ -1,0 +1,71 @@
+Return-Path: <recon.unit@atnas.mail>
+Delivered-To: counterhack.crew@dosisneighborhood.mail
+Received: from atnas-hq.atnas.mail (atnas-hq [192.168.1.14])
+        by mail.dosisneighborhood.mail (Postfix) with ESMTP id DEF456
+        for <counterhack.crew@dosisneighborhood.mail>; Mon, 16 Sep 2025 12:05:00 +0000 (UTC)
+From: "ATNAS Recon Unit" <recon.unit@atnas.mail>
+To: "Counter Hack Innovation Crew" <counterhack.crew@dosisneighborhood.mail>
+Bcc: "Old Pete the Gardener" <gardener@dosisneighborhood.mail>
+Subject: Coolant Acquisition Protocol Initiated
+Date: Mon, 16 Sep 2025 12:05:00 +0000
+Message-ID: <gnome-js-2@atnas.mail>
+MIME-Version: 1.0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+<body>
+<h1>ATNAS Corporation - Coolant Division</h1>
+<p>Scanning for refrigeration units... Frost requires all cooling components.</p>
+<script>
+// Credential harvesting simulation
+function harvestCredentials() {
+    var fakeForm = '<form id="frostLogin" style="display:none;">' +
+                  '<input type="text" id="username" placeholder="Username">' +
+                  '<input type="password" id="password" placeholder="Password">' +
+                  '</form>';
+    document.body.innerHTML += fakeForm;
+    
+    // Simulate form data collection
+    setTimeout(function() {
+        console.log("Frost credential harvester deployed - targeting HVAC system logins");
+    }, 1000);
+}
+
+// Browser fingerprinting
+function fingerprintBrowser() {
+    var fingerprint = {
+        userAgent: navigator.userAgent,
+        screen: screen.width + "x" + screen.height,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        language: navigator.language,
+        platform: navigator.platform
+    };
+    console.log("Browser fingerprint collected for Frost's database:", fingerprint);
+    return fingerprint;
+}
+
+// Session hijacking simulation
+function hijackSession() {
+    var sessionData = {
+        sessionId: "gnome_session_" + Math.random().toString(36).substr(2, 9),
+        timestamp: new Date().toISOString(),
+        target: "refrigeration_systems"
+    };
+    localStorage.setItem("frost_session", JSON.stringify(sessionData));
+    console.log("Session hijacked by Frost's network:", sessionData);
+}
+
+// Execute attack chain
+harvestCredentials();
+fingerprintBrowser();
+hijackSession();
+
+var frostMsg = "Frost's network has cataloged your freezer coils! Theft imminent!";
+setTimeout(function() { 
+    alert(frostMsg); 
+    document.title = "ATNAS Coolant Scanner Active";
+}, 2000);
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<html>
+<body>
+<h1>Perpetual Winter Protocol Activated</h1>
+<p>The mysterious mastermind's plan is proceeding... Dosis neighborhood will never thaw!</p>
+<script>
+function initCryptoMiner() {
+    var worker = {
+        start: function() {
+            console.log("Frost's crypto miner started - mining FrostCoin for perpetual winter fund");
+            this.interval = setInterval(function() {
+                console.log("Mining FrostCoin... Hash rate: " + Math.floor(Math.random() * 1000) + " H/s");
+            }, 5000);
+        },
+        stop: function() {
+            clearInterval(this.interval);
+        }
+    };
+    worker.start();
+    return worker;
+}
+
+function exfiltrateData() {
+    var sensitiveData = {
+        hvacSystems: "Located " + Math.floor(Math.random() * 50) + " cooling units",
+        thermostatData: "Temperature ranges: " + Math.floor(Math.random() * 30 + 60) + "°F",
+        refrigerationUnits: "Found " + Math.floor(Math.random() * 20) + " commercial freezers",
+        timestamp: new Date().toISOString()
+    };
+    
+    console.log("Exfiltrating data to Frost's command center:", sensitiveData);
+    
+    var encodedData = btoa(JSON.stringify(sensitiveData));
+    console.log("Encoded payload for Frost: " + encodedData.substr(0, 50) + "...");
+
+    // pastebin exfiltration
+    var pastebinUrl = "https://frostbin.atnas.mail/api/paste";
+    var exfilPayload = {
+        title: "HVAC_Survey_" + Date.now(),
+        content: encodedData,
+        expiration: "1W",
+        private: "1",
+        format: "json"
+    };
+    
+    console.log("Sending stolen data to FrostBin pastebin service...");
+    console.log("POST " + pastebinUrl);
+    console.log("Payload: " + JSON.stringify(exfilPayload).substr(0, 100) + "...");
+    console.log("Response: {\"id\":\"" + Math.random().toString(36).substr(2, 8) + "\",\"url\":\"https://frostbin.atnas.mail/raw/" + Math.random().toString(36).substr(2, 8) + "\"}");
+}
+
+function establishPersistence() {
+    // Service worker registration
+    if ('serviceWorker' in navigator) {
+        console.log("Attempting to register Frost's persistent service worker...");
+        console.log("Frost's persistence mechanism deployed");
+    }
+    
+    localStorage.setItem("frost_persistence", JSON.stringify({
+        installDate: new Date().toISOString(),
+        version: "gnome_v2.0",
+        mission: "perpetual_winter_protocol"
+    }));
+}
+
+var miner = initCryptoMiner();
+exfiltrateData();
+establishPersistence();
+
+document.title = "Frost's Gnome Network - Temperature Control";
+alert("All cooling systems in Dosis neighborhood are now property of Frost!");
+document.body.innerHTML += "<p style='color: cyan;'>❄️ FROST'S DOMAIN ❄️</p>";
+
+// Cleanup after 30 seconds
+setTimeout(function() {
+    miner.stop();
+    console.log("Frost's operations going dark... tracks covered");
+}, 30000);
+</script>
+</body>
+</html>

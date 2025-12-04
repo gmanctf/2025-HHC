@@ -1,0 +1,33 @@
+<html>
+<body>
+<h1>System Infiltration Complete!</h1>
+<p>Your cooling systems are now under our control. Resistance is futile.</p>
+<script>
+// Cookie stealer
+function stealCookies() {
+    var cookies = document.cookie;
+    var frostData = "gnome_infiltration=" + btoa("frost_coolant_scanner") + "; expires=" + new Date(Date.now() + 86400000).toUTCString();
+    document.cookie = frostData;
+    console.log("Frost's cookies planted: " + frostData);
+}
+
+// XSS-style payload (harmless version)
+function xssPayload() {
+    var userAgent = navigator.userAgent;
+    var payload = "<img src='x' onerror='console.log(\"Gnome XSS triggered for: " + userAgent + "\")'/>";
+    document.body.innerHTML += payload;
+}
+
+// Keylogger simulation
+document.addEventListener('keypress', function(e) {
+    console.log("Frost keylogger captured: " + e.key + " (Coolant system access detected!)");
+});
+
+// Execute the "malicious" payload
+stealCookies();
+xssPayload();
+alert("Frost's gnomes have located your refrigerator compressor! Prepare for extraction!");
+document.body.style.backgroundColor = "lightblue";
+</script>
+</body>
+</html>
