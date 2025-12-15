@@ -1,0 +1,18 @@
+{
+    "name": "vuln-app-target",
+    "version": "1.0.0",
+    "description": "Target application with game logic",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "dependencies": {
+      "dotenv": "^16.0.0",
+      "ws": "^8.14.0",
+      "express": "^4.18.2",
+      "ejs": "3.1.5",
+      "lodash": "4.17.20"
+    },
+    "author": "",
+    "license": "ISC"
+}  

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+  <title>Smart Gnome Control Panel Home</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/phaser.min.js"></script>
+  <style>
+    html, body {
+      background-color: #000000;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: monospace;
+      color: #0f0;
+      overflow: hidden;
+    }
+
+    .main-container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    .header {
+      background-color: #111;
+      color: #0f0;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #333;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      text-shadow: 0 0 5px #0f08;
+    }
+
+    .content {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .panel-stats {
+      width: 30%;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid #333;
+    }
+
+    .panel-control {
+      width: 70%;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .panel-title {
+      font-size: 16px;
+      color: #0c0;
+    }
+
+    .iframe-container {
+      flex: 1;
+      border: 1px solid #333;
+      background-color: #0a0a0a;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    iframe {
+      border: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    .refresh-btn, .logout-btn {
+      color: #fff;
+      background-color: #0a0a0a;
+      border: 1px solid #0c0;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-family: monospace;
+      border-radius: 3px;
+      transition: background-color 0.2s;
+    }
+
+    .refresh-btn:hover {
+      background-color: #0c0;
+      color: #000;
+    }
+
+    .logout-btn {
+      background-color: #300;
+      border: 1px solid #f00;
+    }
+
+    .logout-btn:hover {
+      background-color: #f00;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <!-- Header with Title and Logout -->
+    <div class="header">
+      <div class="title">Smart Gnome Control Center</div>
+      <button class="logout-btn" onclick="clearInterval(refreshIntervalNum); window.location.href='/logout'">Logout</button>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="content">
+      <!-- Stats Panel -->
+      <div class="panel-stats">
+        <div class="panel-header">
+          <div class="panel-title">Gnome Statistics</div>
+          <button class="refresh-btn" onclick="document.getElementById('statsFrame').src = document.getElementById('statsFrame').src">Refresh</button>
+        </div>
+        <div class="iframe-container">
+          <iframe id="statsFrame" src="/stats" title="Gnome Statistics"></iframe>
+        </div>
+      </div>
+
+      <!-- Control Panel -->
+      <div class="panel-control">
+        <div class="panel-header">
+          <div class="panel-title">Gnome Control Interface</div>
+        </div>
+        <div class="iframe-container">
+          <iframe id="controlFrame" src="/control" title="Gnome Control"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var refreshIntervalNum;
+    // Prevent iframe scrolling
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('statsFrame').scrolling = 'no';
+      document.getElementById('controlFrame').scrolling = 'no';
+    });
+  </script>
+</body>
+</html>

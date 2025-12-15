@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+  <title>Smart Gnome Control Interface</title>
+  <script src="/static/phaser.min.js"></script>
+  <!-- Load factory_floor.js directly -->
+  <script src="/static/factory_floor.js" defer></script>
+  <style>
+    html, body {
+      background-color: #000000;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: monospace;
+      color: #0f0;
+    }
+
+    canvas {
+      display: block;
+    }
+
+    .key {
+      display: inline-block;
+      background-color: #222;
+      border: 1px solid #444;
+      border-radius: 3px;
+      padding: 2px 5px;
+      margin: 0 3px;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #0f0;
+      font-family: monospace;
+    }
+
+    .modal-content {
+      background-color: #111;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 5px;
+    }
+
+    .close-button {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close-button:hover,
+    .close-button:focus {
+      color: #0f0;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .modal-content label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .modal-content input[type="text"] {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin-bottom: 20px;
+      background-color: #222;
+      border: 1px solid #444;
+      color: #0f0;
+      font-family: monospace;
+    }
+
+    .modal-content button {
+      background-color: #050;
+      color: #0f0;
+      padding: 10px 15px;
+      border: 1px solid #0f0;
+      border-radius: 3px;
+      cursor: pointer;
+      font-family: monospace;
+    }
+
+    .modal-content button:hover {
+      background-color: #070;
+    }
+
+    #updateStatus {
+      margin-top: 15px;
+      font-size: 0.9em;
+    }
+
+    #openModalBtn {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      z-index: 10;
+      color: #fff;
+      background-color: #0a0a0a;
+      border: 1px solid #0c0;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-family: monospace;
+      border-radius: 3px;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    #openModalBtn:hover {
+      background-color: #0c0;
+      color: #000;
+    }
+
+    #resetFactoryBtn {
+      position: absolute;
+      bottom: 10px;
+      left: 120px;
+      z-index: 10;
+      color: #fff;
+      background-color: #0a0a0a;
+      border: 1px solid #f00;
+      padding: 5px 10px;
+      cursor: pointer;
+      font-family: monospace;
+      border-radius: 3px;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    #resetFactoryBtn:hover {
+      background-color: #f00;
+      color: #fff;
+    }
+
+    #resetConfirmStatus {
+      margin-top: 15px;
+      font-size: 0.9em;
+    }
+
+    .confirmation-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .confirmation-buttons button {
+      width: 45%;
+    }
+
+    #cancelResetBtn {
+      background-color: #222;
+      border: 1px solid #444;
+    }
+
+#confirmResetBtn {
+  background-color: #500;
+  border: 1px solid #f00;
+}
+#confirmResetBtn:hover {
+  background-color: #700;
+}
+</style>
+</head>
+
+<body>
+<!-- Button to open the modal -->
+<button id="openModalBtn">Update Name</button>
+
+<!-- Button to open the reset factory modal -->
+<button id="resetFactoryBtn">Reset Factory</button>
+
+<!-- Update Name Modal -->
+<div id="updateNameModal" class="modal">
+<div class="modal-content">
+  <span class="close-button">&times;</span>
+  <h2>Update GnomeBot Name</h2>
+  <label for="gnomeNameInput">New Name:</label>
+  <input type="text" id="gnomeNameInput" name="gnomeName">
+  <button id="submitNameBtn">Update Name</button>
+  <div id="updateStatus"></div>
+</div>
+</div>
+
+<!-- Reset Factory Confirmation Modal -->
+<div id="resetConfirmModal" class="modal">
+<div class="modal-content">
+  <span class="close-button">&times;</span>
+  <h2>Reset Factory Confirmation</h2>
+  <p>Are you sure you want to reset the factory? This action cannot be undone.</p>
+  <div class="confirmation-buttons">
+    <button id="cancelResetBtn">Cancel</button>
+    <button id="confirmResetBtn">Reset</button>
+  </div>
+  <div id="resetConfirmStatus"></div>
+</div>
+</div>
+
+<script>
+const modal = document.getElementById("updateNameModal");
+const openBtn = document.getElementById("openModalBtn");
+const closeBtn = document.querySelector("#updateNameModal .close-button");
+const submitBtn = document.getElementById("submitNameBtn");
+const nameInput = document.getElementById("gnomeNameInput");
+const statusDiv = document.getElementById("updateStatus");
+
+const resetModal = document.getElementById("resetConfirmModal");
+const resetBtn = document.getElementById("resetFactoryBtn");
+const resetCloseBtn = document.querySelector("#resetConfirmModal .close-button");
+const confirmResetBtn = document.getElementById("confirmResetBtn");
+const cancelResetBtn = document.getElementById("cancelResetBtn");
+const resetStatusDiv = document.getElementById("resetConfirmStatus");
+
+openBtn.onclick = function () {
+  modal.style.display = "block";
+  statusDiv.textContent = "";
+  nameInput.value = "";
+};
+
+closeBtn.onclick = function () {
+  modal.style.display = "none";
+};
+
+resetBtn.onclick = function () {
+  resetModal.style.display = "block";
+  resetStatusDiv.textContent = "";
+};
+
+resetCloseBtn.onclick = function () {
+  resetModal.style.display = "none";
+};
+
+cancelResetBtn.onclick = function () {
+  resetModal.style.display = "none";
+};
+
+confirmResetBtn.onclick = function () {
+  resetStatusDiv.textContent = "Resetting factory...";
+  resetStatusDiv.style.color = "#0f0";
+
+  if (typeof gameScene !== 'undefined' && gameScene && gameScene.ws) {
+    try {
+      gameScene.ws.send(JSON.stringify({ action: 'reset' }));
+      resetStatusDiv.textContent = "Factory reset initiated!";
+      setTimeout(() => {
+        resetModal.style.display = "none";
+      }, 1500);
+    } catch (error) {
+      resetStatusDiv.textContent = `Error: ${error.message}`;
+      resetStatusDiv.style.color = "#f00";
+    }
+  } else {
+    resetStatusDiv.textContent = "Error: Game not initialized or connection not available.";
+    resetStatusDiv.style.color = "#f00";
+  }
+};
+
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+  if (event.target == resetModal) {
+    resetModal.style.display = "none";
+  }
+  if (event.target == resetModal) {
+    resetModal.style.display = "none";
+  }
+};
+
+// Handle name submission
+submitBtn.onclick = function () {
+const newName = nameInput.value.trim();
+if (!newName) {
+  statusDiv.textContent = "Error: Name cannot be empty.";
+  statusDiv.style.color = "#f00";
+  return;
+}
+
+statusDiv.textContent = "Updating...";
+statusDiv.style.color = "#0f0";
+
+const payload = {
+  action: 'update',
+  key: 'settings',
+  subkey: 'name',
+  value: newName
+};
+
+const encodedPayload = encodeURIComponent(JSON.stringify(payload));
+const url = `/ctrlsignals?message=${encodedPayload}`;
+
+fetch(url)
+  .then(response => {
+    if (!response.ok) {
+      return response.json().then(err => {
+        throw new Error(err.message || `HTTP error! status: ${response.status}`);
+      }).catch(() => {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      });
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log("Server response:", data);
+    if (data.data === "success") {
+      statusDiv.textContent = `Success: ${data.message}`;
+      statusDiv.style.color = "#0f0";
+      setTimeout(() => {
+        modal.style.display = "none";
+      }, 1500);
+    } else {
+      statusDiv.textContent = `Error: ${data.message || 'Unknown error from server.'}`;
+      statusDiv.style.color = "#f00";
+    }
+  })
+  .catch(error => {
+    console.error('Error sending update request:', error);
+    statusDiv.textContent = `Error: ${error.message}`;
+    statusDiv.style.color = "#f00";
+  });
+};
+</script>
+</body>
+</html>

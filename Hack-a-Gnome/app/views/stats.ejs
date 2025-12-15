@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+  <title>Smart Gnome Stats</title>
+  <style>
+    html,
+    body {
+      background-color: #000000;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: monospace;
+      color: #0f0;
+    }
+
+    .stats-container {
+      padding: 10px;
+      overflow-y: auto;
+      height: 100%;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 6px 8px;
+      text-align: left;
+      border-bottom: 1px solid #333;
+    }
+
+    th {
+      color: #0c0;
+      font-weight: bold;
+      background-color: #111;
+    }
+
+    tr:hover {
+      background-color: #111;
+    }
+
+    .stats-header {
+      color: #0f0;
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .key-cell {
+      color: #0c0;
+    }
+
+    .value-cell {
+      color: #0f0;
+    }
+  </style>
+</head>
+<body>
+  <div class="stats-container">
+    <div class="stats-header">Smart Gnome Statistics</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Parameter</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% gnomeStats.forEach(stat => { %>
+          <tr>
+            <td class="key-cell"><%= stat.name %></td>
+            <td class="value-cell"><%= stat.value %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
