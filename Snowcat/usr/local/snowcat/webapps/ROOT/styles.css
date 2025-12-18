@@ -1,0 +1,34 @@
+body {
+    background: linear-gradient(to bottom, #1e3c72, #2a5298);
+    color: white;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+h1, h2 {
+    text-shadow: 0 0 10px #fff, 0 0 20px #ff8c00;
+}
+
+.login-container, .dashboard-container {
+    margin-top: 50px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    display: inline-block;
+}
+
+@keyframes snow {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(100vh); }
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    color: white;
+    font-size: 10px;
+    animation: snow 10s linear infinite;
+}
