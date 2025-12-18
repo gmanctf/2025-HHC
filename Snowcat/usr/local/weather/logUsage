@@ -1,0 +1,12 @@
+#!/bin/bash
+
+LOG_DIR="/usr/local/weather/logs"
+DATE=$(date '+%Y-%m-%d')
+LOG_FILE="$LOG_DIR/$DATE.log"
+
+# Ensure the logs directory exists
+mkdir -p "$LOG_DIR"
+
+# Log the key (vulnerable to command injection)
+#eval "echo $(date '+%Y-%m-%d %H:%M:%S') - Function: $1 Key: $2 >> $LOG_FILE"
+echo $(date '+%Y-%m-%d %H:%M:%S') - Function: $1 Key: $2 >> $LOG_FILE
