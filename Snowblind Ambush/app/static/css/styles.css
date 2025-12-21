@@ -1,0 +1,519 @@
+/* Holiday Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap');
+/* Christmas Theme Variables */
+:root {
+  /* Frosty winter palette */
+  --primary-color: #0a4c70;      /* Deep ice blue */
+  --secondary-color: #88c1d8;    /* Frosty blue */
+  --accent-color: #c3e0e8;       /* Light ice blue */
+  --highlight-color: #d1e8e2;    /* Pale frost */
+  --light-bg: #eaf5f9;           /* Icy background */
+  --dark-text: #1c3144;          /* Deep frost blue text */
+  --light-text: #fff;            /* Snow white text */
+  --border-radius: 10px;
+  --shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  
+  /* Frost patterns */
+  --candy-stripe: repeating-linear-gradient(
+    45deg,
+    rgba(10, 76, 112, 0.6),
+    rgba(10, 76, 112, 0.6) 10px,
+    rgba(195, 224, 232, 0.8) 10px,
+    rgba(195, 224, 232, 0.8) 20px
+  );
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  line-height: 1.6;
+  color: var(--dark-text);
+  background-color: var(--light-bg);
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%2388c1d8' fill-opacity='0.08' fill-rule='evenodd'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+}
+
+/* Intense Frost Animation */
+@keyframes snowfall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(10px) rotate(180deg);
+  }
+  100% {
+    transform: translateY(20px) rotate(360deg);
+    opacity: 0.7;
+  }
+}
+
+/* Adding snowflakes to the body */
+body::before {
+  content: "";
+  position: fixed;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(circle at 20% 20%, white 1px, transparent 1px),
+    radial-gradient(circle at 40% 60%, white 1px, transparent 1px),
+    radial-gradient(circle at 60% 30%, white 1px, transparent 1px),
+    radial-gradient(circle at 80% 70%, white 1px, transparent 1px);
+  background-size: 
+    200px 200px,
+    300px 300px,
+    250px 250px,
+    220px 220px;
+  animation: snowfall 8s linear infinite;
+}
+
+/* Main Content Styles */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  position: relative;
+}
+
+/* Typography */
+h1, h2, h3 {
+  font-family: 'Mountains of Christmas', cursive;
+  letter-spacing: 0.03em;
+}
+
+h1 {
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 5px rgba(136, 193, 216, 0.7), 0 0 10px rgba(136, 193, 216, 0.4);
+  position: relative;
+}
+
+h1::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100px;
+  height: 4px;
+  background: var(--candy-stripe);
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(195, 224, 232, 0.8);
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.feature {
+  background: white;
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  border-top: 3px solid var(--accent-color);
+  transition: transform 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+}
+
+.feature h2 {
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+/* Navigation styles */
+nav {
+  background-color: var(--secondary-color);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 4px solid var(--primary-color);
+}
+
+.nav-logo {
+  color: var(--light-text);
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  font-family: 'Mountains of Christmas', cursive;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  color: var(--light-text);
+  text-decoration: none;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--highlight-color);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--highlight-color);
+  transition: width 0.3s;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Login Page Styles */
+.login-container {
+  max-width: 400px;
+  margin: 2rem auto;
+  background: white;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  border-top: 5px solid var(--primary-color);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  color: var(--secondary-color);
+}
+
+.form-group input {
+  padding: 12px;
+  border: 2px solid #e5e5e5;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+.login-button {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.login-button:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+/* Message styles */
+.error-message {
+  background-color: rgba(193, 73, 83, 0.15);
+  color: var(--primary-color);
+  padding: 12px;
+  margin-bottom: 1rem;
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--primary-color);
+}
+
+.flash-messages {
+  margin-bottom: 1rem;
+}
+
+.flash-message {
+  background-color: rgba(118, 155, 107, 0.15);
+  color: var(--secondary-color);
+  padding: 12px;
+  margin-bottom: 0.5rem;
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--accent-color);
+}
+.flash-message.error, .flash-message.danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+/* Chatbot Icon */
+#chat-icon {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 65px;
+  height: 65px;
+  background-color: var(--secondary-color);
+  border: 2px solid var(--light-text);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+#chat-icon i {
+  font-size: 26px;
+  color: var(--light-text);
+}
+
+#chat-icon:hover {
+  transform: scale(1.1) rotate(5deg);
+  background-color: var(--primary-color);
+}
+
+/* Chatbot Window */
+#chat-window {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 350px;
+  height: 500px;
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  border: 2px solid var(--secondary-color);
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+}
+
+#chat-header {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+#chat-header h3 {
+  font-weight: 600;
+  font-family: 'Mountains of Christmas', cursive;
+  letter-spacing: 0.03em;
+}
+
+#close-chat {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: transform 0.3s;
+}
+
+#close-chat:hover {
+  transform: rotate(90deg);
+}
+
+#chat-messages {
+  flex-grow: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: rgba(234, 245, 249, 0.9);
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.7) 1px, transparent 1px),
+    radial-gradient(circle at 80% 60%, rgba(255, 255, 255, 0.7) 1px, transparent 1px);
+  background-size: 20px 20px, 30px 30px;
+}
+
+.message {
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  margin-bottom: 5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.user-message {
+  align-self: flex-end;
+  background-color: var(--secondary-color);
+  color: white;
+  border-bottom-right-radius: 5px;
+  box-shadow: 0 0 10px rgba(136, 193, 216, 0.5);
+  backdrop-filter: blur(2px);
+}
+
+.bot-message {
+  align-self: flex-start;
+  background-color: rgba(195, 224, 232, 0.7);
+  color: var(--dark-text);
+  border-bottom-left-radius: 5px;
+  white-space: pre-wrap;
+  border-left: 2px solid var(--primary-color);
+  backdrop-filter: blur(2px);
+}
+
+.typing {
+  font-style: italic;
+  color: #888;
+}
+
+#chat-input-area {
+  display: flex;
+  padding: 12px;
+  border-top: 1px solid #e9e9eb;
+  background-color: white;
+}
+
+#user-input {
+  flex-grow: 1;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  margin-right: 10px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+#user-input:focus {
+  border-color: var(--accent-color);
+}
+
+#send-button {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+#send-button:hover {
+  background-color: var(--secondary-color);
+  transform: scale(1.05);
+}
+/* Frosty header decoration */
+h1::before {
+    content: "❄";
+    display: inline-block;
+    margin-right: 10px;
+    animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Frost sparkle for username */
+.username-sparkle {
+display: inline-block;
+position: relative;
+color: var(--primary-color);
+font-weight: bold;
+text-shadow: 0 0 3px rgba(136, 193, 216, 0.6);
+}
+
+.username-sparkle::before {
+content: "❄";
+position: absolute;
+left: -20px;
+top: -5px;
+font-size: 0.6em;
+animation: sparkle 2s infinite ease-in-out alternate;
+}
+
+.username-sparkle::after {
+content: "❄";
+position: absolute;
+right: -20px;
+bottom: -5px;
+font-size: 0.6em;
+animation: sparkle 2s infinite ease-in-out alternate 1s;
+}
+
+@keyframes sparkle {
+  0% { opacity: 0.4; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Festive dashboard styling */
+.festive-dashboard {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+gap: 1.5rem;
+margin-top: 2rem;
+}
+
+.dashboard-card {
+background: white;
+padding: 1.5rem;
+border-radius: var(--border-radius);
+box-shadow: var(--shadow);
+border-left: 4px solid var(--accent-color);
+transition: transform 0.3s ease;
+}
+
+.dashboard-card:hover {
+transform: translateY(-5px);
+}
+
+.welcome-message {
+font-size: 1.2rem;
+margin-bottom: 1.5rem;
+}
+
+.dashboard-message {
+margin-top: 2rem;
+padding: 1rem;
+background: rgba(255,255,255,0.7);
+border-radius: var(--border-radius);
+text-align: center;
+font-style: italic;
+border-left: 4px solid var(--highlight-color);
+}
